@@ -1,0 +1,29 @@
+<html>
+<head>
+<title> {% block titre %} Chat {% endblock %}</title>
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+{% endblock  %}
+<script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+</head>
+<body>
+<div id="content">
+<div id="header"></div>
+<div id="menu"></div>
+
+<div id="corps">
+{% block corps %}
+{% endblock %}
+</div>
+
+<div id="footer"></div>
+
+{% block javascripts %}	
+	<script type="text/javascript" src="{{ asset('js/envoi_msg.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/connexion.js') }}"></script>
+
+{% endblock %}
+</div>
+</body>
+</html>

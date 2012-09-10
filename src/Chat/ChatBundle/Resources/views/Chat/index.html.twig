@@ -1,0 +1,45 @@
+{% extends '::layout.html.twig' %}
+{% block titre %}
+{{ parent() }} - Bienvenue
+{% endblock %}
+
+{% block corps %}
+<h1 style="text-align: center">Chat</h1>
+<div class="chat">
+	<div class="user">
+		<form action="" name="signIn" >
+			<span class="erreur">Utilisateur invalide</span>
+			<input type="text" size="13px" name="nom" id="nom" placeholder="Votre pseudo">
+			<input type="submit" id="signin" value="sign in"/>
+		</form>
+	</div>
+	<div id="messages" class="messages">
+		<p>Administrateur : Bonjour, Vos messages ici</p>
+		
+	</div>
+	<div class="envoiMsg">
+		<form id="signInForm" name="signInForm" onsubmit="return false">
+			<input type="submit" id="msgSignIn" value="Connectez vous pour acceder au chat"/>
+		</form>
+		<form name="nouveauMsgForm" class="nouveauMsgForm" onsubmit="return false;">
+			<div class="left" >
+			<textarea id="nouveauMsg" name="nouveauMsg" placeholder="Votre message ici"></textarea>
+			</div>
+			<div class="right">
+			<input type="submit" value="Envoyer" id="nouveauMsgEnvoi">
+			</div>
+		</form>
+	</div>
+
+</div>
+<script type="text/javascript">
+$.ajaxSetup({
+	cache:false
+});
+$(setInterval(function() {
+	$('#messages').load("{{ path('chat_actualiserMsg')}}");
+	//$('#messages').attr({scrollTop: $('#messages').attr('scrollHeight')});
+	$('#messages').scrollTop(messages.scrollHeight);
+}, 500));
+</script>
+{% endblock %}
